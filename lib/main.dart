@@ -58,21 +58,76 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String _expression = '';
   String _result = '0';
+  double _firstOperand = 0.0;
+  String _operator = '';
+  bool _isOperatorPressed = false;
 
   void _onButtonPressed(String buttonText) {
     setState(() {
-      if (buttonText == '.') {
-        if (!_result.contains('.')) {
+      if (buttonText == 'C') {
+        _expression = '';
+        _result = '0';
+        _firstOperand = 0.0;
+        _operator = '';
+        _isOperatorPressed = false;
+      } else if (buttonText == '.') {
+        if (_isOperatorPressed) {
+          _result = '0.';
+          _isOperatorPressed = false;
+        } else if (!_result.contains('.')) {
           _result += buttonText;
         }
+      } else if (buttonText == '+' ||
+          buttonText == '-' ||
+          buttonText == 'x' ||
+          buttonText == '÷') {
+        if (_firstOperand == 0.0 || _isOperatorPressed) {
+          _firstOperand = double.parse(_result);
+        } else {
+          // Perform calculation if an operator was already pressed
+          _calculateResult();
+        }
+        _operator = buttonText;
+        _expression = '$_firstOperand $_operator';
+        _isOperatorPressed = true;
+      } else if (buttonText == '=') {
+        _calculateResult();
+        _expression = ''; // Clear expression after equals
+        _isOperatorPressed = false;
       } else {
-        if (_result == '0') {
+        if (_isOperatorPressed) {
+          _result = buttonText;
+          _isOperatorPressed = false;
+        } else if (_result == '0') {
           _result = buttonText;
         } else {
           _result += buttonText;
         }
       }
     });
+  }
+
+  void _calculateResult() {
+    double secondOperand = double.parse(_result);
+    switch (_operator) {
+      case '+':
+        _result = (_firstOperand + secondOperand).toString();
+        break;
+      case '-':
+        _result = (_firstOperand - secondOperand).toString();
+        break;
+      case 'x':
+        _result = (_firstOperand * secondOperand).toString();
+        break;
+      case '÷':
+        if (secondOperand != 0) {
+          _result = (_firstOperand / secondOperand).toString();
+        } else {
+          _result = 'Error'; // Handle division by zero
+        }
+        break;
+    }
+    _firstOperand = double.parse(_result);
   }
 
   @override
