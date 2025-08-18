@@ -77,6 +77,9 @@ class _MyHomePageState extends State<MyHomePage> {
         } else if (!_result.contains('.')) {
           _result += buttonText;
         }
+      } else if (buttonText == '%') {
+        double currentValue = double.parse(_result);
+        _result = (currentValue / 100).toString();
       } else if (buttonText == '+' ||
           buttonText == '-' ||
           buttonText == 'x' ||

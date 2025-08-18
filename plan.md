@@ -10,7 +10,7 @@ This document outlines the steps to build the Flutter calculator app based on th
 - [x] Apply the color scheme and styling to all UI components as per the PRD.
 - [x] Implement the input logic for number buttons (0-9) and the decimal point (.).
 - [x] Implement the logic for basic arithmetic operators (+, -, x, ÷).
-- [ ] Implement the calculation logic for the percentage (%) button.
+- [x] Implement the calculation logic for the percentage (%) button.
 - [ ] Implement the core calculation engine triggered by the equals (=) button.
 - [ ] Implement the functionality for the Clear (C) button.
 - [ ] Implement the functionality for the Backspace button to delete the last digit.
