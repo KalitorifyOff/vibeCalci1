@@ -56,6 +56,25 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String _expression = '';
+  String _result = '0';
+
+  void _onButtonPressed(String buttonText) {
+    setState(() {
+      if (buttonText == '.') {
+        if (!_result.contains('.')) {
+          _result += buttonText;
+        }
+      } else {
+        if (_result == '0') {
+          _result = buttonText;
+        } else {
+          _result += buttonText;
+        }
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,8 +85,8 @@ class _MyHomePageState extends State<MyHomePage> {
           Expanded(
             flex: 1,
             child: CalculatorDisplay(
-              expression: ' ', // Placeholder for previous operation
-              result: '0', // Placeholder for current result
+              expression: _expression,
+              result: _result,
             ),
           ),
           // Button Grid Area
@@ -80,10 +99,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
-                      CalculatorButton(text: 'C', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () {}),
-                      CalculatorButton(text: 'MC', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () {}),
-                      CalculatorButton(text: '%', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () {}),
-                      CalculatorButton(text: '÷', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () {}),
+                      CalculatorButton(text: 'C', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () => _onButtonPressed('C')),
+                      CalculatorButton(text: 'MC', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () => _onButtonPressed('MC')),
+                      CalculatorButton(text: '%', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () => _onButtonPressed('%')),
+                      CalculatorButton(text: '÷', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () => _onButtonPressed('÷')),
                     ],
                   ),
                 ),
@@ -92,10 +111,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
-                      CalculatorButton(text: '7', onPressed: () {}),
-                      CalculatorButton(text: '8', onPressed: () {}),
-                      CalculatorButton(text: '9', onPressed: () {}),
-                      CalculatorButton(text: 'x', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () {}),
+                      CalculatorButton(text: '7', onPressed: () => _onButtonPressed('7')),
+                      CalculatorButton(text: '8', onPressed: () => _onButtonPressed('8')),
+                      CalculatorButton(text: '9', onPressed: () => _onButtonPressed('9')),
+                      CalculatorButton(text: 'x', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () => _onButtonPressed('x')),
                     ],
                   ),
                 ),
@@ -104,10 +123,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
-                      CalculatorButton(text: '4', onPressed: () {}),
-                      CalculatorButton(text: '5', onPressed: () {}),
-                      CalculatorButton(text: '6', onPressed: () {}),
-                      CalculatorButton(text: '-', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () {}),
+                      CalculatorButton(text: '4', onPressed: () => _onButtonPressed('4')),
+                      CalculatorButton(text: '5', onPressed: () => _onButtonPressed('5')),
+                      CalculatorButton(text: '6', onPressed: () => _onButtonPressed('6')),
+                      CalculatorButton(text: '-', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () => _onButtonPressed('-')),
                     ],
                   ),
                 ),
@@ -116,10 +135,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
-                      CalculatorButton(text: '1', onPressed: () {}),
-                      CalculatorButton(text: '2', onPressed: () {}),
-                      CalculatorButton(text: '3', onPressed: () {}),
-                      CalculatorButton(text: '+', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () {}),
+                      CalculatorButton(text: '1', onPressed: () => _onButtonPressed('1')),
+                      CalculatorButton(text: '2', onPressed: () => _onButtonPressed('2')),
+                      CalculatorButton(text: '3', onPressed: () => _onButtonPressed('3')),
+                      CalculatorButton(text: '+', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () => _onButtonPressed('+')),
                     ],
                   ),
                 ),
@@ -130,15 +149,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: <Widget>[
                       Expanded(
                         flex: 2, // Double width for 0
-                        child: CalculatorButton(text: '0', bigButton: true, onPressed: () {}),
+                        child: CalculatorButton(text: '0', bigButton: true, onPressed: () => _onButtonPressed('0')),
                       ),
                       Expanded(
                         flex: 1,
-                        child: CalculatorButton(text: '.', onPressed: () {}),
+                        child: CalculatorButton(text: '.', onPressed: () => _onButtonPressed('.')),
                       ),
                       Expanded(
                         flex: 1,
-                        child: CalculatorButton(text: '=', color: const Color(0xFFFF8C00), textColor: Colors.white, onPressed: () {}),
+                        child: CalculatorButton(text: '=', color: const Color(0xFFFF8C00), textColor: Colors.white, onPressed: () => _onButtonPressed('=')),
                       ),
                     ],
                   ),
