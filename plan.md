@@ -12,7 +12,7 @@ This document outlines the steps to build the Flutter calculator app based on th
 8. [x] Implement the logic for basic arithmetic operators (+, -, x, ÷).
 9. [x] Implement the calculation logic for the percentage (%) button.
 10. [x] Implement the core calculation engine triggered by the equals (=) button.
-11. [ ] Implement the functionality for the Clear (C) button.
+11. [x] Implement the functionality for the Clear (C) button.
 12. [ ] Implement the functionality for the Backspace button to delete the last digit.
 13. [ ] Implement the Memory Clear (MC) button functionality.
 14. [ ] Set up state management to handle the calculator's state.
