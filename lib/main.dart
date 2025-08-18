@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:calci/widgets/calculator_display.dart';
+import 'package:calci/widgets/calculator_button.dart';
 
 void main() {
   runApp(const MyApp());
@@ -72,30 +73,77 @@ class _MyHomePageState extends State<MyHomePage> {
           // Button Grid Area
           Expanded(
             flex: 2,
-            child: Container(
-              color: Colors.transparent, // Buttons will define their own colors
-              // Placeholder for button grid
-              child: GridView.builder(
-                physics: const NeverScrollableScrollPhysics(), // Disable scrolling
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4, // 4 columns for calculator buttons
-                  childAspectRatio: 1.0, // Square buttons
-                  crossAxisSpacing: 1.0,
-                  mainAxisSpacing: 1.0,
+            child: Column(
+              children: <Widget>[
+                // Row 1
+                Expanded(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      CalculatorButton(text: 'C', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () {}),
+                      CalculatorButton(text: 'MC', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () {}),
+                      CalculatorButton(text: '%', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () {}),
+                      CalculatorButton(text: '÷', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () {}),
+                    ],
+                  ),
                 ),
-                itemCount: 20, // Placeholder for 20 buttons (e.g., 5 rows of 4)
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    color: Colors.grey, // Placeholder button color
-                    child: Center(
-                      child: Text(
-                        'Btn $index',
-                        style: const TextStyle(color: Colors.white),
+                // Row 2
+                Expanded(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      CalculatorButton(text: '7', onPressed: () {}),
+                      CalculatorButton(text: '8', onPressed: () {}),
+                      CalculatorButton(text: '9', onPressed: () {}),
+                      CalculatorButton(text: 'x', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () {}),
+                    ],
+                  ),
+                ),
+                // Row 3
+                Expanded(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      CalculatorButton(text: '4', onPressed: () {}),
+                      CalculatorButton(text: '5', onPressed: () {}),
+                      CalculatorButton(text: '6', onPressed: () {}),
+                      CalculatorButton(text: '-', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () {}),
+                    ],
+                  ),
+                ),
+                // Row 4
+                Expanded(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      CalculatorButton(text: '1', onPressed: () {}),
+                      CalculatorButton(text: '2', onPressed: () {}),
+                      CalculatorButton(text: '3', onPressed: () {}),
+                      CalculatorButton(text: '+', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () {}),
+                    ],
+                  ),
+                ),
+                // Row 5 (with double-width 0 button)
+                Expanded(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      Expanded(
+                        flex: 2, // Double width for 0
+                        child: CalculatorButton(text: '0', bigButton: true, onPressed: () {}),
                       ),
-                    ),
-                  );
-                },
-              ),
+                      Expanded(
+                        flex: 1,
+                        child: CalculatorButton(text: '.', onPressed: () {}),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: CalculatorButton(text: '=', color: const Color(0xFFFF8C00), textColor: Colors.white, onPressed: () {}),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ],
