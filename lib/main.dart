@@ -64,12 +64,22 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _onButtonPressed(String buttonText) {
     setState(() {
-      if (buttonText == 'C') {
+      } else if (buttonText == 'C') {
         _expression = '';
         _result = '0';
         _firstOperand = 0.0;
         _operator = '';
         _isOperatorPressed = false;
+      } else if (buttonText == 'MC') {
+        _firstOperand = 0.0;
+        _operator = '';
+        _expression = '';
+      } else if (buttonText == '⌫') { // Assuming '⌫' for backspace
+        if (_result.length > 1) {
+          _result = _result.substring(0, _result.length - 1);
+        } else {
+          _result = '0';
+        }
       } else if (buttonText == '.') {
         if (_isOperatorPressed) {
           _result = '0.';
@@ -158,7 +168,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       CalculatorButton(text: 'C', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () => _onButtonPressed('C')),
-                      CalculatorButton(text: 'MC', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () => _onButtonPressed('MC')),
+                      CalculatorButton(text: '⌫', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () => _onButtonPressed('⌫')),
                       CalculatorButton(text: '%', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () => _onButtonPressed('%')),
                       CalculatorButton(text: '÷', color: const Color(0xFFA5A9B4), textColor: Colors.white, onPressed: () => _onButtonPressed('÷')),
                     ],

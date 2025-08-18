@@ -13,8 +13,8 @@ This document outlines the steps to build the Flutter calculator app based on th
 9. [x] Implement the calculation logic for the percentage (%) button.
 10. [x] Implement the core calculation engine triggered by the equals (=) button.
 11. [x] Implement the functionality for the Clear (C) button.
-12. [ ] Implement the functionality for the Backspace button to delete the last digit.
-13. [ ] Implement the Memory Clear (MC) button functionality.
+12. [x] Implement the functionality for the Backspace button to delete the last digit.
+13. [x] Implement the Memory Clear (MC) button functionality.
 14. [ ] Set up state management to handle the calculator's state.
 15. [ ] Implement the calculation history feature to view past calculations.
 16. [ ] Ensure the UI is responsive and adapts to different screen sizes.
