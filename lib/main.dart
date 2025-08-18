@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:calci/widgets/calculator_display.dart';
 
 void main() {
   runApp(const MyApp());
@@ -63,17 +64,9 @@ class _MyHomePageState extends State<MyHomePage> {
           // Display Area
           Expanded(
             flex: 1,
-            child: Container(
-              color: Colors.transparent, // Will be transparent, content will define appearance
-              alignment: Alignment.bottomRight,
-              padding: const EdgeInsets.all(16.0),
-              child: const Text(
-                '0', // Placeholder for display
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 48.0,
-                ),
-              ),
+            child: CalculatorDisplay(
+              expression: ' ', // Placeholder for previous operation
+              result: '0', // Placeholder for current result
             ),
           ),
           // Button Grid Area

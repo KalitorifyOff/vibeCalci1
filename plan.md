@@ -5,7 +5,7 @@ This document outlines the steps to build the Flutter calculator app based on th
 - [x] Create a new Flutter project named 'calculator_app'.
 - [x] Set up the basic project structure, folders, and files.
 - [x] Implement the main app layout with the display screen and button grid area.
-- [ ] Create the calculator display widget to show input and results.
+- [x] Create the calculator display widget to show input and results.
 - [ ] Design and implement a reusable widget for the calculator buttons.
 - [ ] Apply the color scheme and styling to all UI components as per the PRD.
 - [ ] Implement the input logic for number buttons (0-9) and the decimal point (.).
