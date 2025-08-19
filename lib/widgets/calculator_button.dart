@@ -4,7 +4,6 @@ class CalculatorButton extends StatelessWidget {
   final String text;
   final Color color;
   final Color textColor;
-  final double fontSize;
   final VoidCallback onPressed;
 
   const CalculatorButton({
@@ -12,12 +11,14 @@ class CalculatorButton extends StatelessWidget {
     required this.text,
     this.color = const Color(0xFFE0E0E0), // Light Gray
     this.textColor = Colors.black,
-    this.fontSize = 32.0,
     required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final fontSize = screenWidth * 0.08; // 8% of screen width
+
     return Container(
       margin: const EdgeInsets.all(4.0),
       child: ElevatedButton(

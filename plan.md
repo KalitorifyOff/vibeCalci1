@@ -15,9 +15,9 @@ This document outlines the steps to build the Flutter calculator app based on th
 11. [x] Implement the functionality for the Clear (C) button.
 12. [x] Implement the functionality for the Backspace button to delete the last digit.
 13. [x] Implement the Memory Clear (MC) button functionality.
-14. [ ] Set up state management to handle the calculator's state.
-15. [ ] Implement the calculation history feature to view past calculations.
-16. [ ] Ensure the UI is responsive and adapts to different screen sizes.
+14. [x] Set up state management to handle the calculator's state.
+15. [x] Implement the calculation history feature to view past calculations.
+16. [x] Ensure the UI is responsive and adapts to different screen sizes.
 17. [x] Write unit tests for the calculation logic and helper functions.
 18. [ ] Write widget tests for the display, button, and grid components.
 19. [ ] Write integration tests to verify the end-to-end user flows.

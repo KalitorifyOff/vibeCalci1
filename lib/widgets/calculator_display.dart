@@ -19,19 +19,25 @@ class CalculatorDisplay extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          Text(
-            expression,
-            style: const TextStyle(
-              color: Colors.white70,
-              fontSize: 24.0,
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              expression,
+              style: const TextStyle(
+                color: Colors.white70,
+                fontSize: 24.0,
+              ),
             ),
           ),
-          Text(
-            result,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 48.0,
-              fontWeight: FontWeight.bold,
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              result,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 48.0,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ],

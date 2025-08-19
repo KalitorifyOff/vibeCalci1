@@ -31,7 +31,7 @@ void main() {
       calculatorLogic.onButtonPressed('+');
       calculatorLogic.onButtonPressed('3');
       calculatorLogic.onButtonPressed('=');
-      expect(calculatorLogic.result, '8.0');
+      expect(calculatorLogic.result, '8');
     });
 
     test('Subtraction works correctly', () {
@@ -39,7 +39,7 @@ void main() {
       calculatorLogic.onButtonPressed('-');
       calculatorLogic.onButtonPressed('4');
       calculatorLogic.onButtonPressed('=');
-      expect(calculatorLogic.result, '6.0');
+      expect(calculatorLogic.result, '6');
     });
 
     test('Multiplication works correctly', () {
@@ -47,7 +47,7 @@ void main() {
       calculatorLogic.onButtonPressed('x');
       calculatorLogic.onButtonPressed('7');
       calculatorLogic.onButtonPressed('=');
-      expect(calculatorLogic.result, '42.0');
+      expect(calculatorLogic.result, '42');
     });
 
     test('Division works correctly', () {
@@ -55,7 +55,7 @@ void main() {
       calculatorLogic.onButtonPressed('÷');
       calculatorLogic.onButtonPressed('4');
       calculatorLogic.onButtonPressed('=');
-      expect(calculatorLogic.result, '5.0');
+      expect(calculatorLogic.result, '5');
     });
 
     test('Division by zero returns Error', () {
@@ -103,7 +103,49 @@ void main() {
       expect(calculatorLogic.firstOperand, 0.0);
       expect(calculatorLogic.operator, '');
       expect(calculatorLogic.expression, '');
-      expect(calculatorLogic.result, '5'); // Result should remain as the last input
+      expect(calculatorLogic.result, '0');
+    });
+
+    test('Chained operations work correctly', () {
+      calculatorLogic.onButtonPressed('2');
+      calculatorLogic.onButtonPressed('+');
+      calculatorLogic.onButtonPressed('3');
+      calculatorLogic.onButtonPressed('+');
+      expect(calculatorLogic.result, '5');
+      calculatorLogic.onButtonPressed('4');
+      calculatorLogic.onButtonPressed('=');
+      expect(calculatorLogic.result, '9');
+    });
+
+    test('Operations with negative results work correctly', () {
+      calculatorLogic.onButtonPressed('5');
+      calculatorLogic.onButtonPressed('-');
+      calculatorLogic.onButtonPressed('10');
+      calculatorLogic.onButtonPressed('=');
+      expect(calculatorLogic.result, '-5');
+    });
+
+    test('Starts new calculation after pressing equals', () {
+      calculatorLogic.onButtonPressed('1');
+      calculatorLogic.onButtonPressed('+');
+      calculatorLogic.onButtonPressed('2');
+      calculatorLogic.onButtonPressed('=');
+      expect(calculatorLogic.result, '3');
+      calculatorLogic.onButtonPressed('4');
+      expect(calculatorLogic.result, '4');
+    });
+
+    test('Pressing an operator after a calculation uses the result as the first operand', () {
+      calculatorLogic.onButtonPressed('1');
+      calculatorLogic.onButtonPressed('+');
+      calculatorLogic.onButtonPressed('2');
+      calculatorLogic.onButtonPressed('=');
+      expect(calculatorLogic.result, '3');
+      calculatorLogic.onButtonPressed('+');
+      expect(calculatorLogic.expression, '3 +');
+      calculatorLogic.onButtonPressed('4');
+      calculatorLogic.onButtonPressed('=');
+      expect(calculatorLogic.result, '7');
     });
   });
 }

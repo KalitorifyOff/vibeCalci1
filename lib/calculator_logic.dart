@@ -6,11 +6,14 @@ class CalculatorLogic extends ChangeNotifier {
   double _firstOperand = 0.0;
   String _operator = '';
   bool _isOperatorPressed = false;
+  bool _isCalculationComplete = false;
+  final List<String> _history = [];
 
   String get expression => _expression;
   String get result => _result;
   double get firstOperand => _firstOperand;
   String get operator => _operator;
+  List<String> get history => _history;
 
   String _formatResult(double result) {
     if (result.truncateToDouble() == result) {
@@ -27,14 +30,19 @@ class CalculatorLogic extends ChangeNotifier {
       _firstOperand = 0.0;
       _operator = '';
       _isOperatorPressed = false;
+      _isCalculationComplete = false;
     } else if (buttonText == '⌫') {
       if (_result.length > 1) {
         _result = _result.substring(0, _result.length - 1);
       } else {
         _result = '0';
       }
+      _isCalculationComplete = false;
     } else if (buttonText == '.') {
-      if (_isOperatorPressed) {
+      if (_isCalculationComplete) {
+        _result = '0.';
+        _isCalculationComplete = false;
+      } else if (_isOperatorPressed) {
         _result = '0.';
         _isOperatorPressed = false;
       } else if (!_result.contains('.')) {
@@ -43,31 +51,34 @@ class CalculatorLogic extends ChangeNotifier {
     } else if (buttonText == '%') {
       double currentValue = double.parse(_result);
       _result = _formatResult(currentValue / 100);
+      _isCalculationComplete = true;
     } else if (buttonText == '+' ||
         buttonText == '-' ||
         buttonText == 'x' ||
         buttonText == '÷') {
-      if (_firstOperand == 0.0 || _isOperatorPressed) {
-        _firstOperand = double.parse(_result);
-      } else {
+      if (_isCalculationComplete) {
+        _isCalculationComplete = false;
+      }
+      if (_operator.isNotEmpty && !_isOperatorPressed) {
         _calculateResult();
       }
+      _firstOperand = double.parse(_result);
       _operator = buttonText;
       _expression = '${_formatResult(_firstOperand)} $_operator';
       _isOperatorPressed = true;
     } else if (buttonText == '=') {
-      _calculateResult();
-      _expression = '';
-      _isOperatorPressed = false;
-    } else {
-      if (_result == 'Error') { // Clear error state on new number input
-        _result = '0';
+      if (_operator.isNotEmpty) {
+        _calculateResult();
         _expression = '';
-        _firstOperand = 0.0;
-        _operator = '';
         _isOperatorPressed = false;
+        _isCalculationComplete = true;
+        _operator = '';
       }
-      if (_isOperatorPressed) {
+    } else { // Number buttons
+      if (_isCalculationComplete) {
+        _result = buttonText;
+        _isCalculationComplete = false;
+      } else if (_isOperatorPressed) {
         _result = buttonText;
         _isOperatorPressed = false;
       } else if (_result == '0') {
@@ -82,6 +93,7 @@ class CalculatorLogic extends ChangeNotifier {
   void _calculateResult() {
     if (_result == 'Error') return; // Don't calculate if already in error state
     double secondOperand = double.parse(_result);
+    String secondOperandStr = _result;
     double tempResultValue = 0;
 
     switch (_operator) {
@@ -104,6 +116,10 @@ class CalculatorLogic extends ChangeNotifier {
         }
         break;
     }
+
+    final historyEntry =
+        '${_formatResult(_firstOperand)} $_operator $secondOperandStr = ${_formatResult(tempResultValue)}';
+    _history.add(historyEntry);
 
     _result = _formatResult(tempResultValue);
     if (_result != 'Error') {

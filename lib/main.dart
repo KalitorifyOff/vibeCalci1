@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:calci/widgets/calculator_display.dart';
 import 'package:calci/widgets/calculator_button.dart';
 import 'package:calci/calculator_logic.dart';
+import 'package:calci/widgets/history_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,6 +37,20 @@ class MyHomePage extends StatelessWidget {
     final calculator = Provider.of<CalculatorLogic>(context);
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.history),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const HistoryPage()),
+              );
+            },
+          ),
+        ],
+      ),
       backgroundColor: const Color(0xFF2D3035), // Dark Charcoal background
       body: Column(
         children: <Widget>[
