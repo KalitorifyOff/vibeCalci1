@@ -18,7 +18,7 @@ This document outlines the steps to build the Flutter calculator app based on th
 14. [ ] Set up state management to handle the calculator's state.
 15. [ ] Implement the calculation history feature to view past calculations.
 16. [ ] Ensure the UI is responsive and adapts to different screen sizes.
-17. [ ] Write unit tests for the calculation logic and helper functions.
+17. [x] Write unit tests for the calculation logic and helper functions.
 18. [ ] Write widget tests for the display, button, and grid components.
 19. [ ] Write integration tests to verify the end-to-end user flows.
 20. [ ] Run all tests to ensure code quality and correctness.
